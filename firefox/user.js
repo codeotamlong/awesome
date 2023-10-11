@@ -1,5 +1,5 @@
 /*
-** ADD-ONS - CUSTOMIZE UI
+** PERSONALIZE
 */
 
 // Un-check singature extension
@@ -12,42 +12,22 @@ user_pref("extensions.webextensions.restrictedDomains", "");
 // Enable userChrome.css
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 
-// Compact mode
-user_pref("browser.compactmode.show", true);
-
-// Native Dark mode (?)
-//user_pref("browser.display.use_system_colors", false );
-//user_pref("browser.display.background_color", "#c0c0c0" );
-//user_pref("browser.display.foreground_color", "#000000" );
-//user_pref("browser.visited_color", "#aa3700" );
-//user_pref("browser.anchor_color", "#800040" );
-//user_pref("browser.display.document_color_use", 2 );
-
-// Native Font
-user_pref("font.name.serif.x-western", "Arial" );
-user_pref("browser.display.use_document_fonts", 0 );
-
-// Smooth scroll
-user_pref("apz.overscroll.enabled", true);
-user_pref("general.smoothScroll", true);
-user_pref("mousewheel.enable_pixel_scrolling", false );
-user_pref("mousewheel.default.delta_multiplier_y", 275 );
-user_pref("general.smoothScroll.mouseWheel.durationMaxMS", 200 );
-user_pref("general.smoothScroll.mouseWheel.durationMinMS", 50 );
+// UserChrome FindBar Floating Top - Right
+user_pref("userchrome.floating-findbar-on-right.enabled", true);
 
 /*
-** SPEED
+** SPEED-UP
 */
 
-// Reduce render rate
+// Delay to first render
 user_pref("nglayout.initialpaint.delay", 2000);
 user_pref("nglayout.initialpaint.delay_in_oopif", 2000);
 
-// Force RAM cache, uncomment // to enable
-// user_pref("browser.cache.disk.enable", false);
-// user_pref("browser.cache.memory.enable", true);
-// user_pref("browser.cache.memory.capacity", 524288);
-// user_pref("browser.cache.memory.max_entry_size", 512000);
+// Force RAM cache
+//user_pref("browser.cache.disk.enable", false);
+//user_pref("browser.cache.memory.enable", true);
+//user_pref("browser.cache.memory.capacity", 524288);
+//user_pref("browser.cache.memory.max_entry_size", 512000);
 
 // Force RAM cache - Disable RCWN
 user_pref("network.http.rcwn.enabled", false);
@@ -55,13 +35,38 @@ user_pref("network.http.rcwn.enabled", false);
 // Disable SkeletonUI
 user_pref("browser.startup.preXulSkeletonUI", false );
 
-// Reduce disk read/write
-user_pref("browser.sessionstore.idleDelay", 3600000);
-user_pref("browser.sessionstore.interval", 3600000);
-user_pref("browser.sessionstore.collect_zoom", false);
-user_pref("browser.sessionstore.privacy_level", 2);
-user_pref("browser.sessionstore.restore_pinned_tabs_on_demand", true);
-user_pref("browser.sessionhistory.max_total_viewers", 0);
+// Disable Accessibility
+user_pref("accessibility.force_disabled", 1 );
+
+/*
+** UX/UI
+*/
+
+// Compact mode (slim toolbar)
+user_pref("browser.compactmode.show", true );
+
+// Enable Early hints
+user_pref("network.early-hints.enabled", true);
+user_pref("network.early-hints.preconnect.enabled", true);
+user_pref("network.early-hints.preconnect.max_connections", 20);
+
+// Bypass Cookie Banners: 
+//      1 - Decline ALL (DECLINE - if FAILED, KEEP banner); 
+//      2 - Hide ALL    (DECLINE - if FAILED, ACCEPT - to remove banner);
+user_pref("cookiebanners.service.mode", 2 );
+user_pref("cookiebanners.service.mode.privateBrowsing", 2 );
+
+// Bypass Cookie Banners - emulator CLICK, cookie INJECTOR: 
+user_pref("cookiebanners.bannerClicking.enabled", true );
+user_pref("cookiebanners.cookieInjector.enabled", true );
+
+// Smooth scroll
+user_pref("apz.overscroll.enabled", true);
+user_pref("general.smoothScroll", true);
+user_pref("mousewheel.enable_pixel_scrolling", false );
+user_pref("mousewheel.default.delta_multiplier_y", 275 );
+user_pref("general.smoothScroll.mouseWheel.durationMaxMS", 250 );
+user_pref("general.smoothScroll.mouseWheel.durationMinMS", 200 );
 
 /*
 ** NETWORK
@@ -75,67 +80,22 @@ user_pref("security.remote_settings.crlite_filters.enabled", true);
 user_pref("security.pki.crlite_mode", 2);
 
 // Next DNS
-user_pref("network.trr.uri", "https://doh3.dns.nextdns.io");
-user_pref("network.trr.custom_uri", "https://doh3.dns.nextdns.io");
+user_pref("network.trr.uri", "https://doh3.dns.nextdns.io/");
+user_pref("network.trr.custom_uri", "https://doh3.dns.nextdns.io/");
 user_pref("network.trr.mode", 2);
 
 // Enable QUICv2
 user_pref("network.http.http3.alt-svc-mapping-for-testing", 'doh3.dns.nextdns.io; h3=":443"; quicv="709a50c4,1", dns.google; h3=":443"; quicv="709a50c4,1"');
 
-// Optimize HTTP3:
-user_pref("network.http.http3.send_background_tabs_deprioritization", true );
-user_pref("network.http.http3.version_negotiation.enabled", true );
-user_pref("security.tls.ech.grease_http3", true );
-
-// Force NextDNS on HTTP3 and QUICv2 by altsvc:
-user_pref("network.http.http3.alt-svc-mapping-for-testing", 'doh3.dns.nextdns.io;h3=":443"; quicv="6b3343cf,1"' );
-
-// Trr
-user_pref("network.dns.skipTRR-when-parental-control-enabled", false );
-user_pref("network.trr.async_connInfo", true );
-user_pref("network.trr.confirmation_telemetry_enabled", false );
-// user_pref("network.trr.custom_uri", "https://doh3.dns.nextdns.io" );
-user_pref("network.trr.disable-ECS", false );
-user_pref("network.trr.mode", 3 );
-// user_pref("network.trr.uri", "https://doh3.dns.nextdns.io" );
-
-// Unlimited DNS queries
-user_pref("network.dnsCacheEntries", -1 );
-
-
-
 /*
-** MISC
+** PRIVACY - SECURITY
 */
 
-// Enable Early Hints
-user_pref("network.early-hints.enabled", true);
-user_pref("network.early-hints.preconnect.enabled", true);
-user_pref("network.early-hints.preconnect.max_connections", 20);
-
-// Enable punycode
-user_pref("network.IDN_show_punycode", true);
-
-// Bypass Cookie Banners: 
-//      1 - Decline ALL (DECLINE - if FAILED, KEEP banner); 
-//      2 - Hide ALL    (DECLINE - if FAILED, ACCEPTS - to remove banner);
-user_pref("cookiebanners.service.mode", 2 );
-user_pref("cookiebanners.service.mode.privateBrowsing", 2 );
-// Bypass Cookie Banners - emulator CLICK, cookie INJECTOR:
-user_pref("cookiebanners.bannerClicking.enabled", true );
-user_pref("cookiebanners.cookieInjector.enabled", true );
-
-
-/*
-** PRIVACY
-*/
-
-// Anti Tracking+Canvas Fingerprint+Font Fingerprint
+// Resist Fingerprint (RFP)
 user_pref("privacy.resistFingerprinting", true);
 
-// Disable Pocket and Accessibility
-user_pref("extensions.pocket.enabled", false);
-user_pref("accessibility.force_disabled", 1);
+// Enable punnycode
+user_pref("network.IDN_show_punycode", true);
 
 // Enable Multi-Account Container
 user_pref("privacy.userContext.enabled", true); //enable Multi-Account Container
@@ -267,9 +227,3 @@ user_pref("browser.safebrowsing.downloads.remote.enabled", false);
  * [TEST] see https://github.com/arkenfox/user.js/wiki/Appendix-A-Test-Sites#-mozilla
  * [1] https://bugzilla.mozilla.org/1226490 ***/
    // user_pref("browser.safebrowsing.allowOverride", false);
-   
-   
-//
-//
-//
-user_pref("userchrome.floating-findbar-on-right.enabled", true);
