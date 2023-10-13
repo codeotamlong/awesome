@@ -68,6 +68,16 @@ user_pref("mousewheel.default.delta_multiplier_y", 275 );
 user_pref("general.smoothScroll.mouseWheel.durationMaxMS", 250 );
 user_pref("general.smoothScroll.mouseWheel.durationMinMS", 200 );
 
+// Fake(?) Darkmode
+// NOTE: Not work with "privacy.resistFingerprinting" = true
+user_pref("browser.display.use_system_colors", false );
+user_pref("browser.display.background_color", "#333333");
+user_pref("browser.display.foreground_color", "#cccccc");
+user_pref("browser.anchor_color", "#ffcc99");
+user_pref("browser.visited_color", "#cc99ff");
+user_pref("browser.display.document_color_use", 2);
+
+
 /*
 ** NETWORK
 */
