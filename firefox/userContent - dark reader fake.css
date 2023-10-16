@@ -1,0 +1,123 @@
+:root {
+    --bg-default: #333333;
+    --fg-default: #cccccc;
+    --fg-header: #ea9a97;
+
+    --link-fg-default: #ffcc99;
+    --link-fg-hover: #9ccfd8;
+    --link-fg-visited: #cc99ff;
+
+    --button-bg-default:  #2b2a33;
+    --button-bg-hover:  #6b697f;
+    --button-bg-action:  #6b697f;
+
+    --border-default: #cccccc;
+    --overlay-default: #23213680;
+    --placeholder-default: #c4a7e780;
+
+    --scroll-default: #BBBBAB;
+    --scroll-bar: #909080;
+}
+
+@-moz-document regexp("^http(s|):\/\/.*") {
+	
+    html,
+    body {
+		background-color: var(--bg-default) !important;
+		color: var(--fg-default) !important;
+		* {
+			border-radius: 0px !important;
+		}
+
+        div:first-child:not(*),
+        header,
+        nav,
+		article *:not(a, a *, button),
+        div[class*='container'],
+        div[class*='section'],
+        div[class*='wrapper'],
+        div[class*='Wrapper'],
+        div[class*='page'],
+        div[class*='nav'],
+        div#top_nav,
+        div#extabar,
+        div#slim_appbar,
+        div#kp-wp-tab-overview > div,
+        [role="navigation"],
+        a {
+			background-color: var(--bg-default) !important;
+            color: var(--fg-default) !important;
+		}
+
+        a {
+            color: var(--link-fg-default) !important;
+            background-image: none !important;
+            &:hover { 
+                color: !important;
+                text-decoration: underline !important;
+            }
+            &:active, &:focus {
+                color: var(--link-fg-hover:) !important;
+            }
+            &:visited { 
+                color: var(--link-fg-visited) !important; 
+            }
+        }
+
+        input, textarea, button, [role="button"] {
+            background-color: var(--button-bg-default)!important;
+            * {
+                background-color: var(--button-bg-default) !important;
+            }
+            &:hover {
+                background-color: var(--button-bg-hover) !important;
+                * {
+                    background-color: var(--button-bg-hover) !important;
+                }
+            }
+            &:active,
+            &:focus {
+                background-color: var(--button-bg-action) !important;
+                * {
+                    background-color: var(--button-bg-action) !important;
+                }
+            }
+        }
+
+        h1, h2, h3, h4, h5, h6, cite {
+            color: var(--fg-header) !important;
+        }
+
+        :not([style*="border-color:"]),
+        ::before,
+        ::after {
+            border-color: var(--border-default) !important;
+        }
+
+        div:empty,
+        [class*="expand"],
+        .sr-reader *,
+        .sr-backdrop {
+            background-color: transparent !important;
+            
+        }
+
+        div[aria-hidden="true"]{
+            background-color: transparent !important;
+            background-image: none !important;
+        }
+
+        img {
+            z-index: 2 !important;
+            background-color: transparent !important;
+        }
+        input::placeholder,
+        textarea::placeholder {
+            color: var(--placeholder-default) !important;
+        }
+        input:not([style*="background-image:"]),
+        textarea:not([style*="background-image:"]) {
+            background-image: none !important;
+        }
+    }
+}

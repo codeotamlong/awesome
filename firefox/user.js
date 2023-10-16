@@ -2,10 +2,6 @@
 ** PERSONALIZE
 */
 
-// Un-check singature extension
-user_pref("xpinstall.signatures.required", false);
-user_pref("xpinstall.whitelist.required", false);
-
 // No exception on extension
 user_pref("extensions.webextensions.restrictedDomains", "");
 
