@@ -1,15 +1,14 @@
 /*
 ** PERSONALIZE
 */
-
 // No exception on extension
 user_pref("extensions.webextensions.restrictedDomains", "");
 
 // Enable userChrome.css
 user_pref("toolkit.legacyUserProfileCustomizations.stylesheets", true);
 
-// UserChrome FindBar Floating Top - Right
-user_pref("userchrome.floating-findbar-on-right.enabled", true);
+// No signature add-on
+user_pref("xpinstall.signatures.required", false);
 
 /*
 ** SPEED-UP
@@ -18,21 +17,20 @@ user_pref("userchrome.floating-findbar-on-right.enabled", true);
 // Delay to first render
 user_pref("nglayout.initialpaint.delay", 2000);
 user_pref("nglayout.initialpaint.delay_in_oopif", 2000);
+user_pref("content.notify.backoffcount", 0);
+user_pref("content.notify.interval", 2000000);
+user_pref("content.notify.ontimer", true);
 
-// Force RAM cache
-//user_pref("browser.cache.disk.enable", false);
-//user_pref("browser.cache.memory.enable", true);
-//user_pref("browser.cache.memory.capacity", 524288);
-//user_pref("browser.cache.memory.max_entry_size", 512000);
 
 // Force RAM cache - Disable RCWN
 user_pref("network.http.rcwn.enabled", false);
 
-// Disable SkeletonUI
+// Disable SkeletonUI - Fast start-up
 user_pref("browser.startup.preXulSkeletonUI", false );
 
-// Disable Accessibility
-user_pref("accessibility.force_disabled", 1 );
+// Disable Pocket and Accessibility
+user_pref("extensions.pocket.enabled", false);
+user_pref("accessibility.force_disabled", 1);
 
 /*
 ** UX/UI
@@ -64,14 +62,25 @@ user_pref("mousewheel.default.delta_multiplier_y", 275 );
 user_pref("general.smoothScroll.mouseWheel.durationMaxMS", 250 );
 user_pref("general.smoothScroll.mouseWheel.durationMinMS", 200 );
 
-// Fake(?) Darkmode
-// NOTE: Not work with "privacy.resistFingerprinting" = true
-user_pref("browser.display.use_system_colors", false );
-user_pref("browser.display.background_color", "#333333");
-user_pref("browser.display.foreground_color", "#cccccc");
-user_pref("browser.anchor_color", "#ffcc99");
-user_pref("browser.visited_color", "#cc99ff");
-user_pref("browser.display.document_color_use", 2);
+// Reduce disk read/write
+user_pref("browser.sessionstore.idleDelay", 3600000);
+user_pref("browser.sessionstore.interval", 3600000);
+user_pref("browser.sessionstore.collect_zoom", false);
+user_pref("browser.sessionstore.privacy_level", 2);
+user_pref("browser.sessionstore.restore_pinned_tabs_on_demand", true);
+user_pref("browser.sessionhistory.max_total_viewers", 0);
+
+//Media cahe
+user_pref("media.memory_cache_max_size", 65536);
+user_pref("media.cache_readahead_limit", 7200);
+user_pref("media.cache_resume_threshold", 3600);
+
+// Image cache
+user_pref("image.mem.decode_bytes_at_a_time", 32768);
+
+//Snappier tooltips
+user_pref("ui.tooltipDelay", 60); 
+user_pref("browser.overlink-delay", 10); 
 
 
 /*
@@ -92,6 +101,14 @@ user_pref("network.trr.mode", 2);
 
 // Enable QUICv2
 user_pref("network.http.http3.alt-svc-mapping-for-testing", 'doh3.dns.nextdns.io; h3=":443"; quicv="709a50c4,1", dns.google; h3=":443"; quicv="709a50c4,1"');
+
+// Bigger packets: Reduce Firefox's CPU usage by requiring fewer application-to-driver data transfers.
+// However, it does not affect the actual packet sizes transmitted over the network.
+user_pref("network.buffer.cache.size", 262144); // 256 kb; default=32768 (32 kb)
+user_pref("network.buffer.cache.count", 128); // default=24
+
+// Increase TLS token caching 
+user_pref("network.ssl_tokens_cache_capacity", 10240); // default=2048; more TLS token caching (fast reconnects)
 
 /*
 ** PRIVACY - SECURITY
