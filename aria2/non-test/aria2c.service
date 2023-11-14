@@ -1,0 +1,16 @@
+# Override or Change User and Group per your local environment
+[Unit]
+Description=Aria2c download manager
+After=network.target
+
+[Service]
+Type=simple
+User=www-data
+Group=www-data
+ExecStartPre=/usr/bin/env touch /var/tmp/aria2c.session
+ExecStart=/usr/bin/aria2c --console-log-level=warn --enable-rpc --rpc-listen-all --conf-path=/etc/aria2.daemon
+TimeoutStopSec=20
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
