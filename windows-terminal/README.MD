@@ -32,3 +32,16 @@ Copy terminal.ico to
 %USERPROFILE%/AppData/Local/WTerminal/terminal.ico
 
 Edit USER_NAME in Open Terminal Here.reg
+
+
+Add to Windows Terminal settings.json
+"profiles": 
+    {
+        "defaults": 
+        {
+            "startingDirectory": "."
+        },
+        "list": [
+		...
+		]
+	}
